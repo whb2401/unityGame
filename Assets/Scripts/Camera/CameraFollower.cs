@@ -30,7 +30,7 @@ namespace EndlessChallenges
                 var mixDirection = forward_w + right_w + up_w * 2f;
                 var cameraTargetPose = target.position + mixDirection.normalized * Distance;
 
-                transform.position = Vector3.Lerp(transform.position, cameraTargetPose, Speed * Time.deltaTime);
+                transform.position = cameraTargetPose;//Vector3.Lerp(transform.position, cameraTargetPose, Speed * Time.deltaTime);
                 transform.forward = -(transform.position - target.position).normalized;
             }
         }

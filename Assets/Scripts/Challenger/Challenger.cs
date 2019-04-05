@@ -36,9 +36,24 @@ namespace EndlessChallenges
 
         public float WalkSpeed = 0.3f;
         public float AllSpeed = 1f;
+        public Animator animator;
+        private RuntimeAnimatorController animController;
         private Dictionary<Coroutine, ChallengerAction> actions = new Dictionary<Coroutine, ChallengerAction>();
 
         private ChallengerAction CurrentAction = ChallengerAction.Idle;
+
+
+        void Start()
+        {
+            if (animator != null)
+            {
+                animController = animator.runtimeAnimatorController;
+                if (animController == null)
+                {
+                    throw new System.Exception("challenger anime controller is null");
+                }
+            }
+        }
 
         public void MoveWtihTouch(object o, TouchCotroller.TouchResult result)
         {
@@ -49,6 +64,7 @@ namespace EndlessChallenges
                     return;
                 }
                 var targetPos = result.hitInfo.point;
+
                 var direction = targetPos - this.transform.position;
                 Move(targetPos, direction, AllSpeed);
             }
@@ -63,6 +79,7 @@ namespace EndlessChallenges
             StopMoveAction();
             CurrentAction = ChallengerAction.Move;
             var coroutine = StartCoroutine(MoveAction(targetPos, direction, speed));
+            animator.SetTrigger("run");
             actions.Add(coroutine, CurrentAction);
         }
 
@@ -101,19 +118,20 @@ namespace EndlessChallenges
                 }
                 else
                 {
+                    ActionEnd();
                     yield break;
                 }
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
+        void Update()
         {
         }
 
-        // Update is called once per frame
-        void Update()
+        void ActionEnd()
         {
+            CurrentAction = ChallengerAction.Idle;
+            animator.SetTrigger("stand");
         }
     }
 }
