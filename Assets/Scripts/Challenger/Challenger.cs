@@ -37,7 +37,6 @@ namespace EndlessChallenges
         public float WalkSpeed = 0.3f;
         public float AllSpeed = 1f;
         public Animator animator;
-        private RuntimeAnimatorController animController;
         private Dictionary<Coroutine, ChallengerAction> actions = new Dictionary<Coroutine, ChallengerAction>();
 
         private ChallengerAction CurrentAction = ChallengerAction.Idle;
@@ -45,14 +44,7 @@ namespace EndlessChallenges
 
         void Start()
         {
-            if (animator != null)
-            {
-                animController = animator.runtimeAnimatorController;
-                if (animController == null)
-                {
-                    throw new System.Exception("challenger anime controller is null");
-                }
-            }
+            CurrentAction = ChallengerAction.Idle;
         }
 
         public void MoveWtihTouch(object o, TouchCotroller.TouchResult result)
@@ -77,9 +69,10 @@ namespace EndlessChallenges
         void Move(Vector3 targetPos, Vector3 direction, float speed)
         {
             StopMoveAction();
+            PlayAnimation(ChallengerAction.Move);
             CurrentAction = ChallengerAction.Move;
             var coroutine = StartCoroutine(MoveAction(targetPos, direction, speed));
-            animator.SetTrigger("run");
+            
             actions.Add(coroutine, CurrentAction);
         }
 
@@ -128,10 +121,18 @@ namespace EndlessChallenges
         {
         }
 
+        void PlayAnimation(ChallengerAction action)
+        {
+            if (action != CurrentAction)
+            {
+                animator.SetTrigger(action.ToString().ToLower());
+            }
+        }
+
         void ActionEnd()
         {
+            PlayAnimation(ChallengerAction.Idle);
             CurrentAction = ChallengerAction.Idle;
-            animator.SetTrigger("stand");
         }
     }
 }
