@@ -11,14 +11,16 @@ namespace EndlessChallenges
         public TouchEffect TouchEffect;
         private List<Challenger> challengers = new List<Challenger>();
         private TouchCotroller touchCotroller;
+        public SwordAsset SwordAesst;
         void Start()
         {
-
+            var sword = Sword.CreateFromAesst(SwordAesst);
             CameraFollower.SetTarget(Challenger.transform);
             touchCotroller = new GameObject("touchController").AddComponent<TouchCotroller>();
             touchCotroller.TouchEvent += Challenger.MoveWtihTouch;
             touchCotroller.TouchEvent += TouchEffect.SetEffectPoseWithTouch;
             challengers.Add(Challenger);
+            Challenger.GetRes(sword);
         }
     }
 }

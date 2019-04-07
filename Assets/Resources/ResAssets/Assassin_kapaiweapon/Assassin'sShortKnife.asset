@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa78ca3b8afc2643b10d8099dba062c, type: 3}
+  m_Name: Assassin'sShortKnife
+  m_EditorClassIdentifier: 
+  maxAttackValue: 90
+  minAttackValue: 50
+  Id: 0
+  info: "\u7269\u54C1\u79CD\u7C7B\uFF1A\u88C5\u5907\n\u540D\u5B57\uFF1A\u523A\u5BA2\u77ED\u5200\n\u90E8\u4F4D\uFF1A\u5355\u624B\n\u63CF\u8FF0\uFF1A\u523A\u5BA2\u6697\u6740\u65F6\u5E38\u7528\u7684\u666E\u901A\u77ED\u5200\uFF0C\u76F8\u5BF9\u4E8E\u5927\u5251\u653B\u901F\u8F83\u5FEB\n\u51FA\u552E\u4EF7\u683C\uFF1A10\u786C\u5E01"
+  name: Assassin'sShortKnife
+  wearType: 1
+  equipmentType: 0
+  resType: 2
+  price: 10
+  sprite: {fileID: 21300000, guid: 7bea4de181a1abc48a33ac0f3310a226, type: 3}
+  prefab: {fileID: 4435800650938726416, guid: 0cd8332a622405543b3b894020f14b13, type: 3}

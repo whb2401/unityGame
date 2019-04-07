@@ -1,4 +1,5 @@
-﻿namespace EndlessChallenges
+﻿using UnityEngine;
+namespace EndlessChallenges
 {
     public enum ResType
     {
@@ -37,6 +38,21 @@
         public virtual int Price()
         {
             return 0;
+        }
+
+        public virtual int Id()
+        {
+            return 0;
+        }
+
+        public virtual Sprite Sprite()
+        {
+            return null;
+        }
+
+        public virtual GameObject Prefab()
+        {
+            return null;
         }
     }
 }

@@ -37,6 +37,11 @@ namespace EndlessChallenges
         public float WalkSpeed = 0.3f;
         public float AllSpeed = 1f;
         public Animator animator;
+
+        public BagUIController BagUI;
+
+        private List<Res> ress = new List<Res>();
+
         private Dictionary<Coroutine, ChallengerAction> actions = new Dictionary<Coroutine, ChallengerAction>();
 
         private ChallengerAction CurrentAction = ChallengerAction.Idle;
@@ -45,6 +50,16 @@ namespace EndlessChallenges
         void Start()
         {
             CurrentAction = ChallengerAction.Idle;
+            BagUI.Init();
+            foreach (var item in ress)
+            {
+                BagUI.AddRes(item);
+            }
+        }
+
+        public void GetRes(Res res)
+        {
+            ress.Add(res);
         }
 
         public void MoveWtihTouch(object o, TouchCotroller.TouchResult result)
@@ -65,6 +80,9 @@ namespace EndlessChallenges
                 Debug.Log("[EndllessChallenger]touch result is null");
             }
         }
+
+
+
 
         void Move(Vector3 targetPos, Vector3 direction, float speed)
         {
@@ -115,10 +133,6 @@ namespace EndlessChallenges
                     yield break;
                 }
             }
-        }
-
-        void Update()
-        {
         }
 
         void PlayAnimation(ChallengerAction action)

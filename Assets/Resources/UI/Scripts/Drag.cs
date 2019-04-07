@@ -12,7 +12,12 @@ public class Drag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUp
     public RectTransform rectTS;        //得到图片的ugui坐标
     Vector2 offset = new Vector3();    //用来得到鼠标和图片的差值
 
-    // Use this for initialization
+    public UnityEngine.Events.UnityEvent PointDown;
+
+    void Start()
+    {
+        
+    }
 
     //当鼠标按下时调用 接口对应  IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
